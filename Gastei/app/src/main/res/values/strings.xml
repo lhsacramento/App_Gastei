@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Gastei</string>
+    <string name="title_activity_incluir_novo_gasto_activity">IncluirNovoGasto_activity</string>
+    <string name="title_activity_incluir_novo_gasto">IncluirNovoGastoActivity</string>
+
+    <string-array name="GenerosCompra">
+        <item>Selecionar genero da compra</item>
+        <item>Despesas Fixas</item>
+        <item>Combustivel</item>
+        <item>Passagem</item>
+        <item>Lanches</item>
+        <item>Lazer</item>
+    </string-array>
+
+    <string-array name="FormaPagamento">
+        <item>Selecionar forma de Pagamento</item>
+        <item>Dinheiro</item>
+        <item>Cartao Debito</item>
+        <item>Boleto</item>
+        <item>Cartao de Credito</item>
+        <item>Débito Automatico</item>
+    </string-array>
+
+    <string-array name="FiltroGasto">
+        <item>7 dias</item>
+        <item>15 dias</item>
+        <item>30 dias</item>
+        <item>360 dias</item>
+        <item>Todo o tempo</item>
+    </string-array>
+
+    <string-array name="ClassificacaoGasto">
+        <item>Selecionar a classificação do gasto</item>
+        <item>Importante</item>
+        <item>Pouco importante</item>
+        <item>Desnecessario</item>
+    </string-array>
+</resources>
