@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -43,6 +46,8 @@ public class ConsultarGastosActivity extends AppCompatActivity {
         intenGet = getIntent();
         parametros = intenGet.getExtras();
 
+        meusGastos = findViewById(R.id.listGastos);
+
         spFiltro = findViewById(R.id.spFiltro);
         if(parametros != null)
         {
@@ -51,7 +56,30 @@ public class ConsultarGastosActivity extends AppCompatActivity {
 
         gastos = db.SelecionarGastos(loginUsed);
         FiltrarDias(7);
+        Inverter();
         MostrarGastos(gastosFiltrados);
+
+
+        meusGastos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(getApplicationContext(),DetalhesDoGastoActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("Login",loginUsed);
+                bundle.putString("DataCompra",gastosFiltrados.get(position).getDataCompra());
+                bundle.putString("GeneroGasto",gastosFiltrados.get(position).getGeneroDespesas());
+                bundle.putString("ClassificacaoGasto",gastosFiltrados.get(position).getClassificacaoGasto());
+                bundle.putString("ValorGasto",gastosFiltrados.get(position).getValorGasto());
+                bundle.putString("FormaPagamento",gastosFiltrados.get(position).getFormaPagamento());
+                bundle.putString("DescricaoGasto",gastosFiltrados.get(position).getDescreverGasto());
+
+                intent.putExtras(bundle);
+
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void OrganizarDados (List<Gasto> _gastos)
@@ -110,12 +138,11 @@ public class ConsultarGastosActivity extends AppCompatActivity {
         try {
             OrganizarDados(_gastos);
 
-            meusGastos = findViewById(R.id.listGastos);
             informacoes = new ArrayList<String>();
 
             //A primeira é pra zerar, pois informações é zero.
 
-            for (int i = _gastos.size() -1; i >= 0; i--) {
+            for (int i = 0; i < _gastos.size(); i++) {
                 informacoes.add(_gastos.get(i).getDataCompra() + " - " +
                         "R$ " + _gastos.get(i).getValorGasto() + " - " +
                         _gastos.get(i).getGeneroDespesas() + " - " +
@@ -205,24 +232,40 @@ public class ConsultarGastosActivity extends AppCompatActivity {
         {
             case "7 dias":
                 FiltrarDias(7);
+                Inverter();
                 MostrarGastos(gastosFiltrados);
                 break;
             case "15 dias":
                 FiltrarDias(15);
+                Inverter();
                 MostrarGastos(gastosFiltrados);
                 break;
             case "30 dias":
                 FiltrarDias(30);
+                Inverter();
                 MostrarGastos(gastosFiltrados);
                 break;
             case "360 dias":
                 FiltrarDias(360);
+                Inverter();
                 MostrarGastos(gastosFiltrados);
                 break;
             case "Todo o tempo":
+                Inverter();
                 MostrarGastos(gastos);
                 break;
         }
+    }
+
+    public void Inverter()
+    {
+        //InverterArrayList
+        ArrayList<Gasto> inverter = new ArrayList<>();
+        for(int i = gastosFiltrados.size() -1;i>=0;i--)
+        {
+            inverter.add(gastosFiltrados.get(i));
+        }
+        gastosFiltrados = inverter;
     }
 
     public void Alerta(String s)
