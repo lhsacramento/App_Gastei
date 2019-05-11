@@ -46,7 +46,6 @@
         android:layout_marginRight="161dp"
         android:layout_marginBottom="21dp"
         android:background="#365E5E5E"
-        android:onClick="Refiltrar"
         android:text="Filtrar"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/listGastos"

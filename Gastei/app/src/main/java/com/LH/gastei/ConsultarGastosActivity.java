@@ -59,11 +59,30 @@ public class ConsultarGastosActivity extends AppCompatActivity {
         }
 
         gastos = db.SelecionarGastos(loginUsed);
-        filtro = spFiltro.getSelectedItem().toString();
 
 
         FiltrarDias(7);
         MostrarGastos(gastosFiltrados);
+
+
+        if(parametros.getString("Filtro") != null)
+        {
+            filtro = parametros.getString("Filtro");
+            Refiltrar(filtro);
+        }
+        else
+        {
+            filtro = spFiltro.getSelectedItem().toString();
+        }
+
+        btFiltrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filtro = spFiltro.getSelectedItem().toString();
+                Refiltrar(filtro);
+            }
+        });
+
 
 
         meusGastos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -236,9 +255,9 @@ public class ConsultarGastosActivity extends AppCompatActivity {
         return Long.parseLong(diaFiltro);
     }
 
-    public void Refiltrar(View view)
+    public void Refiltrar(String f)
     {
-        switch (spFiltro.getSelectedItem().toString())
+        switch (f)
         {
             case "7 dias":
                 FiltrarDias(7);
