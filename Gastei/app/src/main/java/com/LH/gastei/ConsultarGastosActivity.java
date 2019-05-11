@@ -55,8 +55,8 @@ public class ConsultarGastosActivity extends AppCompatActivity {
         }
 
         gastos = db.SelecionarGastos(loginUsed);
-        FiltrarDias(7);
-        Inverter();
+        FiltrarDias(7,false);
+        //Inverter();
         MostrarGastos(gastosFiltrados);
 
 
@@ -107,12 +107,17 @@ public class ConsultarGastosActivity extends AppCompatActivity {
                 long date1 = Long.parseLong(date1InNewFormat);
                 long date2 = Long.parseLong(date2InNewFormat);
 
-                if(date1 > date2)
+                if(date1 < date2)
                 {
-                    Gasto g = new Gasto();
+                    /*Gasto g = new Gasto();
                     g = _gastos.get(i+1);
                     _gastos.set(i+1,_gastos.get(i));
-                    _gastos.set(i,g);
+                    _gastos.set(i,g);*/
+
+                    Gasto w = new Gasto();
+                    w = gastos.get(i);
+                    _gastos.set(i,_gastos.get(i+1));
+                    _gastos.set(i+1,w);
                 }
             }
             if(i>=_gastos.size())
@@ -178,24 +183,28 @@ public class ConsultarGastosActivity extends AppCompatActivity {
         filtroGastos.setAdapter(aFG);
     }
 
-    public void FiltrarDias(int dias)
-    {
-        gastosFiltrados.clear();
-        long filtroDias = DataDoFiltro(dias);
-
-        String gastosDate;
-        String[] gastosDateSplited = new String[3];
-
-        for(int i = 0;i<gastos.size();i++)
+    public void FiltrarDias(int dias,boolean all) {
+        if (!all)
         {
-            gastosDate = gastos.get(i).getDataCompra();
-            gastosDateSplited = gastosDate.split("/");
-            gastosDate = gastosDateSplited[2] + gastosDateSplited[1] + gastosDateSplited[0];
+            gastosFiltrados.clear();
+            long filtroDias = DataDoFiltro(dias);
 
-            if(Long.parseLong(gastosDate) >= filtroDias)
-            {
-                gastosFiltrados.add(gastos.get(i));
+            String gastosDate;
+            String[] gastosDateSplited = new String[3];
+
+            for (int i = 0; i < gastos.size(); i++) {
+                gastosDate = gastos.get(i).getDataCompra();
+                gastosDateSplited = gastosDate.split("/");
+                gastosDate = gastosDateSplited[2] + gastosDateSplited[1] + gastosDateSplited[0];
+
+                if (Long.parseLong(gastosDate) >= filtroDias) {
+                    gastosFiltrados.add(gastos.get(i));
+                }
             }
+        }
+        else
+        {
+            gastosFiltrados = gastos;
         }
     }
 
@@ -231,28 +240,24 @@ public class ConsultarGastosActivity extends AppCompatActivity {
         switch (spFiltro.getSelectedItem().toString())
         {
             case "7 dias":
-                FiltrarDias(7);
-                Inverter();
+                FiltrarDias(7,false);
                 MostrarGastos(gastosFiltrados);
                 break;
             case "15 dias":
-                FiltrarDias(15);
-                Inverter();
+                FiltrarDias(15,false);
                 MostrarGastos(gastosFiltrados);
                 break;
             case "30 dias":
-                FiltrarDias(30);
-                Inverter();
+                FiltrarDias(30,false);
                 MostrarGastos(gastosFiltrados);
                 break;
             case "360 dias":
-                FiltrarDias(360);
-                Inverter();
+                FiltrarDias(360,false);
                 MostrarGastos(gastosFiltrados);
                 break;
             case "Todo o tempo":
-                Inverter();
-                MostrarGastos(gastos);
+                FiltrarDias(0,true);
+                MostrarGastos(gastosFiltrados);
                 break;
         }
     }
