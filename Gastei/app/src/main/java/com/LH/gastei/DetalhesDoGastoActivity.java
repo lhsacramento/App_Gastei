@@ -31,8 +31,7 @@ public class DetalhesDoGastoActivity extends AppCompatActivity {
         _formaPagamento = findViewById(R.id.txUserFormaPagamento);
         _descricaoCompra = findViewById(R.id.txUserDescricaoGasto);
 
-        if(parametros != null)
-        {
+        if(parametros != null) {
             loginUsed = parametros.getString("Login");
             dataCompra = parametros.getString("DataCompra");
             generoGasto = parametros.getString("GeneroGasto");
@@ -45,8 +44,7 @@ public class DetalhesDoGastoActivity extends AppCompatActivity {
         MostrarDetalhesDoGasto();
     }
 
-    public void MostrarDetalhesDoGasto()
-    {
+    public void MostrarDetalhesDoGasto() {
         _dataCompra.setText(dataCompra);
         _classificacaoGasto.setText(classificacaoGasto);
         _descricaoCompra.setText(descricaoCompra);
@@ -55,8 +53,7 @@ public class DetalhesDoGastoActivity extends AppCompatActivity {
         _formaPagamento.setText(formaPagamento);
     }
 
-    public void Voltar(View view)
-    {
+    public void Voltar(View view) {
         Intent intentPut = new Intent(getApplicationContext(),ConsultarGastosActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("Login",loginUsed);

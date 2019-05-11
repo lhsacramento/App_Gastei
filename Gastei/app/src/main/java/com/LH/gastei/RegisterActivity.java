@@ -29,8 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
         db = new DBHelper(this);
     }
 
-    public void SaveUser(View view)
-    {
+    public void SaveUser(View view) {
         PegarCampos();
         if(TestarCampos())
         {
@@ -53,8 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
         Toast.makeText(this,s,Toast.LENGTH_LONG).show();
     }
 
-    public void PegarCampos()
-    {
+    public void PegarCampos() {
         edtLogin = (EditText)findViewById(R.id.editTextLoginRegister);
         edtSenha = (EditText)findViewById(R.id.editTextSenhaRegister);
         edtConfirmarSenha = (EditText)findViewById(R.id.editTextRepetirSenhaRegister);
@@ -64,8 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         confirmarSenha = edtConfirmarSenha.getText().toString();
     }
 
-    public boolean TestarCampos()
-    {
+    public boolean TestarCampos() {
         String test = login.replace(" ","");
 
         if(login.equals("") || senha.equals("") || confirmarSenha.equals(""))
@@ -104,8 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    public void Voltar(View view)
-    {
+    public void Voltar(View view) {
         startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
         finish();
     }

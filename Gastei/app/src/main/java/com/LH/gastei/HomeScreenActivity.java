@@ -22,14 +22,12 @@ public class HomeScreenActivity extends AppCompatActivity {
         intentGet = getIntent();
         parametros = intentGet.getExtras();
 
-        if(parametros != null)
-        {
+        if(parametros != null) {
             loginUsed = parametros.getString("Login");
         }
     }
 
-    public void IncluirGasto(View view)
-    {
+    public void IncluirGasto(View view) {
         Intent intentPut = new Intent(getApplicationContext(),IncluirGastoActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("Login",loginUsed);
@@ -40,8 +38,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         finish();
     }
 
-    public void ConsultarGastos(View view)
-    {
+    public void ConsultarGastos(View view) {
         Intent intentPut = new Intent(getApplicationContext(),ConsultarGastosActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("Login",loginUsed);

@@ -38,8 +38,7 @@ public class ResumoGastosActivity extends AppCompatActivity {
         intentGet = getIntent();
         parametros = intentGet.getExtras();
 
-        if(parametros != null)
-        {
+        if(parametros != null) {
             loginUsed = parametros.getString("Login");
             filtro = parametros.getString("Filtro");
             generoGastos = parametros.getStringArrayList("ResumoGeneroGastos");

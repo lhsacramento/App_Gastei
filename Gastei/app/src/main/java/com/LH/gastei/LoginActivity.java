@@ -19,37 +19,28 @@ public class LoginActivity extends AppCompatActivity {
     DBHelper db;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-
-
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         db = new DBHelper(this);
-
-        FazendoTeste(128);
     }
 
-    public void FazerLogin(View view)
-    {
+    public void FazerLogin(View view) {
         EditText editTextLogin = (EditText) findViewById(R.id.editLogin);
         EditText editTextSenha = (EditText) findViewById(R.id.editSenha);
         String login = editTextLogin.getText().toString();
         String senha = editTextSenha.getText().toString();
 
-        if(login.equals("") || senha.equals(""))
-        {
+        if(login.equals("") || senha.equals("")) {
             Alert("Preencha todos os campos para fazer login!");
         }
-        else
-        {
+        else {
             User user = new User();
             user.setLogin(login);
             user.setSenha(senha);
 
-            if(db.ValidarLogin(user))
-            {
+            if(db.ValidarLogin(user)) {
                 Intent intent = new Intent(getApplicationContext(),HomeScreenActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("Login",login);
@@ -59,24 +50,16 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-            else
-                Alert("Usuário ou senha incorretos");
+            else Alert("Usuário ou senha incorretos");
         }
     }
 
-    public void FazerRegistro(View view)
-    {
+    public void FazerRegistro(View view) {
         startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
         finish();
     }
 
-    private void Alert(String s)
-    {
+    private void Alert(String s){
         Toast.makeText(this,s,Toast.LENGTH_LONG).show();
-    }
-
-    public void FazendoTeste(int quantDias)
-    {
-
     }
 }

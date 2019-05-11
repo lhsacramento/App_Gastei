@@ -107,8 +107,7 @@ public class ConsultarGastosActivity extends AppCompatActivity {
         });
     }
 
-    private void OrganizarDados (List<Gasto> _gastos)
-    {
+    private void OrganizarDados (List<Gasto> _gastos) {
         String date1InNewFormat;
         String date2InNewFormat;
         String[] cutDate1 = new String[3];
@@ -155,8 +154,7 @@ public class ConsultarGastosActivity extends AppCompatActivity {
         }
     }
 
-    public void MostrarGastos(List<Gasto> _gastos)
-    {
+    public void MostrarGastos(List<Gasto> _gastos) {
         try {
             meusGastos = findViewById(R.id.listGastos);
             informacoes = new ArrayList<>();
@@ -179,8 +177,7 @@ public class ConsultarGastosActivity extends AppCompatActivity {
         }
     }
 
-    public void Voltar(View view)
-    {
+    public void Voltar(View view) {
         Intent intentPut = new Intent(getApplicationContext(),HomeScreenActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("Login",loginUsed);
@@ -190,8 +187,7 @@ public class ConsultarGastosActivity extends AppCompatActivity {
         finish();
     }
 
-    public void ConfigSpinner()
-    {
+    public void ConfigSpinner() {
         Spinner filtroGastos = findViewById(R.id.spFiltro);
         ArrayAdapter<CharSequence> aFG = ArrayAdapter.createFromResource(this,R.array.FiltroGasto,android.R.layout.simple_spinner_item);
         aFG.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -228,8 +224,7 @@ public class ConsultarGastosActivity extends AppCompatActivity {
         }
     }
 
-    public long DataDoFiltro(int dias)
-    {
+    public long DataDoFiltro(int dias) {
         String diaFiltro;
         GregorianCalendar gc = new GregorianCalendar();
         gc.set(Calendar.DATE,gc.get(Calendar.DATE) - dias);
@@ -255,8 +250,7 @@ public class ConsultarGastosActivity extends AppCompatActivity {
         return Long.parseLong(diaFiltro);
     }
 
-    public void Refiltrar(String f)
-    {
+    public void Refiltrar(String f) {
         switch (f)
         {
             case "7 dias":
@@ -282,8 +276,7 @@ public class ConsultarGastosActivity extends AppCompatActivity {
         }
     }
 
-    public void ResumirGastos(View view)
-    {
+    public void ResumirGastos(View view) {
         //Configurando os Arrays que enviarei para o fazer o resumo
         try
         {

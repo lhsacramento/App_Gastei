@@ -40,17 +40,55 @@ public class IncluirGastoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_incluir_gasto);
 
         db = new DBHelper(this);
-
+        txDataCompra = findViewById(R.id.txdDataCompra);
         ConfigSpinners();
 
         intentGet = getIntent();
         parametros = intentGet.getExtras();
 
         loginUsed = parametros.getString("Login");
+
+
+       //Criando o click para inserir a data
+        txDataCompra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar call = Calendar.getInstance();
+                int dia = call.get(Calendar.DAY_OF_MONTH);
+                int mes = call.get(Calendar.MONTH);
+                int ano = call.get(Calendar.YEAR);
+
+                DatePickerDialog dialog = new DatePickerDialog(IncluirGastoActivity.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDateSetListener,ano,mes,dia);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        //Salvando a data dps do ok do calendario
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month++;
+
+                String data;
+
+                if (month < 10 && dayOfMonth < 10) {
+                    data = "0" + dayOfMonth + "/" + "0" + month + "/" + year;
+                } else if (month < 10 && dayOfMonth > 9) {
+                    data = dayOfMonth + "/" + "0" + month + "/" + year;
+                } else if (month > 9 && dayOfMonth < 10) {
+                    data = "0" + dayOfMonth + "/" + "0" + month + "/" + year;
+                } else {
+                    data = dayOfMonth + "/" + month + "/" + year;
+                }
+                txDataCompra.setText(data);
+            }
+        };
+
+
     }
 
-    public void Voltar(View view)
-    {
+    public void Voltar(View view) {
         Intent intentPut = new Intent(getApplicationContext(),HomeScreenActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("Login",loginUsed);
@@ -61,56 +99,7 @@ public class IncluirGastoActivity extends AppCompatActivity {
         finish();
     }
 
-    public void AdicionarData(View v)
-    {
-        txDataCompra = findViewById(R.id.txdDataCompra);
-        Calendar call = Calendar.getInstance();
-        int dia = call.get(Calendar.DAY_OF_MONTH);
-        int mes = call.get(Calendar.MONTH);
-        int ano = call.get(Calendar.YEAR);
-
-        DatePickerDialog dialog = new DatePickerDialog(
-                IncluirGastoActivity.this,
-                android.R.style.Theme_Holo_Light_Dialog_NoActionBar,
-                mDateSetListener,
-                ano,mes,dia);
-
-        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month++;
-
-                String data;
-
-                if(month <10 && dayOfMonth < 10)
-                {
-                     data = "0" + dayOfMonth + "/"+ "0" + month + "/" + year;
-                }
-                else if(month < 10 && dayOfMonth > 9)
-                {
-                     data = dayOfMonth + "/" + "0" + month + "/" + year;
-                }
-                else if(month > 9 && dayOfMonth < 10)
-                {
-                     data = "0" + dayOfMonth + "/" + "0" + month + "/" + year;
-                }
-                else
-                {
-                     data = dayOfMonth + "/" + month + "/" + year;
-                }
-                txDataCompra.setText(data);
-            }
-        };
-
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.show();
-
-
-
-    }
-
-    public void ConfigSpinners()
-    {
+    public void ConfigSpinners() {
         Spinner generoCompras = findViewById(R.id.spGeneroCompra);
         ArrayAdapter<CharSequence> aGP = ArrayAdapter.createFromResource(this,R.array.GenerosCompra,android.R.layout.simple_spinner_item);
         aGP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -127,8 +116,7 @@ public class IncluirGastoActivity extends AppCompatActivity {
         classificacaoGasto.setAdapter(aCG);
     }
 
-    public void AdicionarGasto(View view)
-    {
+    public void AdicionarGasto(View view) {
         PegarCampos();
         if(TestarCampos())
         {
@@ -160,15 +148,14 @@ public class IncluirGastoActivity extends AppCompatActivity {
 
     }
 
-    public void PegarCampos()
-    {
-        txDataCompra = (TextView) findViewById(R.id.txdDataCompra);
-        edtDescreverGasto = (EditText)findViewById(R.id.edtDescreverGasto);
-        edtValorGasto = (EditText)findViewById(R.id.edtValorGasto);
+    public void PegarCampos() {
+        txDataCompra = findViewById(R.id.txdDataCompra);
+        edtDescreverGasto = findViewById(R.id.edtDescreverGasto);
+        edtValorGasto = findViewById(R.id.edtValorGasto);
 
-        spClassificacaoGasto = (Spinner)findViewById(R.id.spClassificacaoGasto);
-        spFormaPagamento = (Spinner)findViewById(R.id.spFormaPagamento);
-        spGeneroCompra = (Spinner)findViewById(R.id.spGeneroCompra);
+        spClassificacaoGasto = findViewById(R.id.spClassificacaoGasto);
+        spFormaPagamento = findViewById(R.id.spFormaPagamento);
+        spGeneroCompra = findViewById(R.id.spGeneroCompra);
 
         dataCompra = txDataCompra.getText().toString();
         valorGasto = edtValorGasto.getText().toString();
@@ -179,8 +166,7 @@ public class IncluirGastoActivity extends AppCompatActivity {
         generoCompra = spGeneroCompra.getSelectedItem().toString();
     }
 
-    public boolean TestarCampos()
-    {
+    public boolean TestarCampos() {
         if(dataCompra.equals("Selecionar a data"))
         {
             Alerta("Selecione a data da Compra");

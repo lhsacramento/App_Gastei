@@ -50,8 +50,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public long CreateUsers(User user)
-    {
+    public long CreateUsers(User user) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues v = new ContentValues();
         v.put("Login",user.getLogin());
@@ -60,8 +59,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public boolean ValidarLogin(User user)
-    {
+    public boolean ValidarLogin(User user) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT Login, Password FROM TABLE_USERS WHERE Login=? AND Password=?",
                                new String[] {user.getLogin(),user.getSenha()});
@@ -73,8 +71,7 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
     }
 
-    public long CreateGasto(Gasto gasto)
-    {
+    public long CreateGasto(Gasto gasto) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues v = new ContentValues();
         v.put("Login",gasto.getUsedLogin());
@@ -89,8 +86,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public List<Gasto> SelecionarGastos(String _login)
-    {
+    public List<Gasto> SelecionarGastos(String _login) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT DataCompra, GeneroCompra, ValorGasto, FormaPagamento, ClassificacaoGasto, DescreverGasto FROM TABLE_GASTOS WHERE Login=?",new String[]{_login});
         List<Gasto> _gastos = new ArrayList<>();
