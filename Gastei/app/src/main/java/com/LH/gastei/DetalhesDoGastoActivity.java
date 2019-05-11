@@ -51,7 +51,7 @@ public class DetalhesDoGastoActivity extends AppCompatActivity {
         _classificacaoGasto.setText(classificacaoGasto);
         _descricaoCompra.setText(descricaoCompra);
         _generoGasto.setText(generoGasto);
-        _valorGasto.setText(valorGasto);
+        _valorGasto.setText("R$" + valorGasto);
         _formaPagamento.setText(formaPagamento);
     }
 

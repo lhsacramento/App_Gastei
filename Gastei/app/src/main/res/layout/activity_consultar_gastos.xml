@@ -61,8 +61,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginRight="80dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginRight="104dp"
         android:layout_marginBottom="40dp"
         android:onClick="Voltar"
         android:text="Voltar"
@@ -74,7 +74,7 @@
 
     <Spinner
         android:id="@+id/spFiltro"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_marginStart="180dp"
         android:layout_marginLeft="180dp"
@@ -86,5 +86,21 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txConsultarGastos" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="40dp"
+        android:onClick="ResumirGastos"
+        android:text="Resumir Gastos"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listGastos"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

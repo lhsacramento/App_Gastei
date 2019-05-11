@@ -62,8 +62,10 @@
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txUserFormaPagamento" />
+            app:layout_constraintTop_toBottomOf="@+id/txUserFormaPagamento"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/txUserFormaPagamento"
@@ -117,8 +119,10 @@
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txUserClassificacaoGasto" />
+            app:layout_constraintTop_toBottomOf="@+id/txUserClassificacaoGasto"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/txFormaPagamento"
@@ -134,8 +138,10 @@
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txUserValorGasto" />
+            app:layout_constraintTop_toBottomOf="@+id/txUserValorGasto"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/txUserClassificacaoGasto"
@@ -170,8 +176,10 @@
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txUserGeneroGasto" />
+            app:layout_constraintTop_toBottomOf="@+id/txUserGeneroGasto"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/txUserGeneroGasto"
@@ -206,8 +214,10 @@
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txUserDataCompra" />
+            app:layout_constraintTop_toBottomOf="@+id/txUserDataCompra"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/txUserDataCompra"
@@ -259,8 +269,10 @@
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txDetalhesDoGasto" />
+            app:layout_constraintTop_toBottomOf="@+id/txDetalhesDoGasto"
+            app:layout_constraintVertical_bias="0.0" />
 
         <Button
             android:id="@+id/btVoltar"
