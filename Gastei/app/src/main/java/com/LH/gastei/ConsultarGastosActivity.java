@@ -34,6 +34,8 @@ public class ConsultarGastosActivity extends AppCompatActivity {
     Intent intenGet;
     Bundle parametros;
 
+    Boolean ntg;
+
     Spinner spFiltro;
 
     @Override
@@ -46,63 +48,70 @@ public class ConsultarGastosActivity extends AppCompatActivity {
         ConfigSpinner();
         btFiltrar = findViewById(R.id.btFiltrarGastos);
 
+        ntg = true;
+
         intenGet = getIntent();
         parametros = intenGet.getExtras();
 
 
         meusGastos = findViewById(R.id.listGastos);
-
         spFiltro = findViewById(R.id.spFiltro);
-        if(parametros != null)
-        {
+
+        if(parametros != null) {
             loginUsed = parametros.getString("Login");
         }
 
+
         gastos = db.SelecionarGastos(loginUsed);
 
-
-        FiltrarDias(7);
-        MostrarGastos(gastosFiltrados);
-
-
-        if(parametros.getString("Filtro") != null)
-        {
-            filtro = parametros.getString("Filtro");
-            Refiltrar(filtro);
-        }
-        else
-        {
+        //verificar se tem algo no gastos
+        try {
+            gastos.get(0).getDataCompra();
+            ntg = false;
             filtro = spFiltro.getSelectedItem().toString();
+            FiltrarDias(7);
+            MostrarGastos(gastosFiltrados);
         }
+        catch (Exception e) {ntg = true;}
+
+       if(parametros.getString("Filtro") !=  null) {
+           filtro = parametros.getString("Filtro");
+           Refiltrar(filtro);
+           ntg = false;
+       }
 
         btFiltrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filtro = spFiltro.getSelectedItem().toString();
-                Refiltrar(filtro);
+                Log.d("console","bool: " + ntg);
+                if(ntg == false) {
+                    filtro = spFiltro.getSelectedItem().toString();
+                    Refiltrar(filtro);
+                }else Alerta("Você não tem gastos!");
             }
         });
-
-
 
         meusGastos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("console","bool: " + ntg);
+                if(ntg == false){
+                    Intent intent = new Intent(getApplicationContext(),DetalhesDoGastoActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Login",loginUsed);
+                    bundle.putString("DataCompra",gastosFiltrados.get(position).getDataCompra());
+                    bundle.putString("GeneroGasto",gastosFiltrados.get(position).getGeneroDespesas());
+                    bundle.putString("ClassificacaoGasto",gastosFiltrados.get(position).getClassificacaoGasto());
+                    bundle.putString("ValorGasto",gastosFiltrados.get(position).getValorGasto());
+                    bundle.putString("FormaPagamento",gastosFiltrados.get(position).getFormaPagamento());
+                    bundle.putString("DescricaoGasto",gastosFiltrados.get(position).getDescreverGasto());
 
-                Intent intent = new Intent(getApplicationContext(),DetalhesDoGastoActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("Login",loginUsed);
-                bundle.putString("DataCompra",gastosFiltrados.get(position).getDataCompra());
-                bundle.putString("GeneroGasto",gastosFiltrados.get(position).getGeneroDespesas());
-                bundle.putString("ClassificacaoGasto",gastosFiltrados.get(position).getClassificacaoGasto());
-                bundle.putString("ValorGasto",gastosFiltrados.get(position).getValorGasto());
-                bundle.putString("FormaPagamento",gastosFiltrados.get(position).getFormaPagamento());
-                bundle.putString("DescricaoGasto",gastosFiltrados.get(position).getDescreverGasto());
+                    intent.putExtras(bundle);
 
-                intent.putExtras(bundle);
-
-                startActivity(intent);
-                finish();
+                    startActivity(intent);
+                    finish();
+                }
+                else Alerta("Você não tem gastos!");
             }
         });
     }
@@ -171,8 +180,7 @@ public class ConsultarGastosActivity extends AppCompatActivity {
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, informacoes);
             meusGastos.setAdapter(adapter);
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             Alerta("Não há gastos ainda!");
         }
     }
@@ -195,31 +203,29 @@ public class ConsultarGastosActivity extends AppCompatActivity {
     }
 
     public void FiltrarDias(int dias) {
-        if (dias > 0)
-        {
-            gastosFiltrados.clear();
-            long filtroDias = DataDoFiltro(dias);
+        if(ntg == false) {
+            if (dias > 0) {
+                gastosFiltrados.clear();
+                long filtroDias = DataDoFiltro(dias);
 
-            String gastosDate;
-            String[] gastosDateSplited = new String[3];
+                String gastosDate;
+                String[] gastosDateSplited = new String[3];
 
-            for (int i = 0; i < gastos.size(); i++) {
-                gastosDate = gastos.get(i).getDataCompra();
-                gastosDateSplited = gastosDate.split("/");
-                gastosDate = gastosDateSplited[2] + gastosDateSplited[1] + gastosDateSplited[0];
+                for (int i = 0; i < gastos.size(); i++) {
+                    gastosDate = gastos.get(i).getDataCompra();
+                    gastosDateSplited = gastosDate.split("/");
+                    gastosDate = gastosDateSplited[2] + gastosDateSplited[1] + gastosDateSplited[0];
 
-                if (Long.parseLong(gastosDate) >= filtroDias) {
+                    if (Long.parseLong(gastosDate) >= filtroDias) {
+                        gastosFiltrados.add(gastos.get(i));
+                    }
+                }
+            } else {
+                gastosFiltrados.clear();
+
+                for (int i = 0; i < gastos.size(); i++) {
                     gastosFiltrados.add(gastos.get(i));
                 }
-            }
-        }
-        else
-        {
-            gastosFiltrados.clear();
-
-            for(int i = 0;i<gastos.size();i++)
-            {
-                gastosFiltrados.add(gastos.get(i));
             }
         }
     }
@@ -278,7 +284,7 @@ public class ConsultarGastosActivity extends AppCompatActivity {
 
     public void ResumirGastos(View view) {
         //Configurando os Arrays que enviarei para o fazer o resumo
-        try
+        if(ntg == false)
         {
             ArrayList<String> resumoGeneroGastos, resumoClassificacaoGastos, resumoFormaPagamento;
             resumoGeneroGastos = new ArrayList<>();
@@ -306,13 +312,10 @@ public class ConsultarGastosActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        catch (Exception e)
+        else
         {
             Toast.makeText(this,"Ainda não há gastos para resumir!",Toast.LENGTH_SHORT).show();
         }
-
-
-
     }
 
     public void Alerta(String s)
