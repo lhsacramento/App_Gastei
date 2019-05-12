@@ -26,6 +26,10 @@ public class ResumoGastosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resumo_gastos);
+        View overlay = findViewById(R.id.ActivityResumoGasto);
+        overlay.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                |View.SYSTEM_UI_FLAG_FULLSCREEN
+                |View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         generoGastos = new ArrayList<>();
         classificacaoGastos = new ArrayList<>();

@@ -42,6 +42,11 @@ public class ConsultarGastosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultar_gastos);
+        View overlay = findViewById(R.id.ActivityConsultarGastos);
+        overlay.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                |View.SYSTEM_UI_FLAG_FULLSCREEN
+                |View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+
         db = new DBHelper(this);
         gastos = new ArrayList<>();
         gastosFiltrados = new ArrayList<>();

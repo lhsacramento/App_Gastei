@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConsultarGastosActivity">
+    tools:context=".ConsultarGastosActivity"
+    android:id="@+id/ActivityConsultarGastos">
 
     <TextView
         android:id="@+id/txConsultarGastos"
@@ -41,10 +42,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="21dp"
         android:layout_marginEnd="161dp"
         android:layout_marginRight="161dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginBottom="22dp"
         android:background="#365E5E5E"
         android:text="Filtrar"
         android:textSize="16sp"
