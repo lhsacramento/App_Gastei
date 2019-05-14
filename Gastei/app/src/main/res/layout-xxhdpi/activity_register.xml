@@ -4,140 +4,150 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResumoGastosActivity"
-    android:id="@+id/ActivityResumoGasto">
+    tools:context=".RegisterActivity"
+    android:id="@+id/ActivityRegister">
 
-    <TextView
-        android:id="@+id/txResumoGenero"
+    <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="0px"
+        android:layout_height="0px"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextSenhaRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="5"
-        android:text="Despezas fixas - 100% R$5000 \nCombustível - 50% R$120\nPassagem - 100% R$500 \nLanches - 100% R$300\nLazer - 100% R$500"
-        android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28" />
-
-    <TextView
-        android:id="@+id/txResumoFormaPagamento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="5"
-        android:text="Despezas fixas - 100% R$5000 \nCombustível - 50% R$120\nPassagem - 100% R$500 \nLanches - 100% R$300\nLazer - 100% R$500"
-        android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.79" />
-
-    <TextView
-        android:id="@+id/txFormaPagamento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forma de Pagamento:"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65" />
-
-    <TextView
-        android:id="@+id/txClassificacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Classificação:"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
-
-    <TextView
-        android:id="@+id/txFiltro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="(Filtro)"
-        android:textSize="22sp"
+        android:ems="10"
+        android:focusable="true"
+        android:gravity="center_horizontal|center_vertical"
+        android:inputType="numberPassword"
+        android:textSize="19sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.07999998" />
+        app:layout_constraintVertical_bias="0.595" />
 
-    <TextView
-        android:id="@+id/txGenero"
+    <Button
+        android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gênero:"
-        android:textSize="22sp"
+        android:onClick="SaveUser"
+        android:text="Register"
+        android:textSize="27sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.77"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintVertical_bias="0.94" />
 
-    <TextView
-        android:id="@+id/txResumoClassificacao"
+    <EditText
+        android:id="@+id/editTextRepetirSenhaRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="5"
-        android:text="Importante - 100% - R$5000\nPouco Importante - 100% - R$5000\nDesnecessário - 100% - R$5000"
-        android:textSize="11sp"
+        android:ems="10"
+        android:focusable="true"
+        android:gravity="center_horizontal|center_vertical"
+        android:inputType="numberPassword"
+        android:password="false"
+        android:phoneNumber="false"
+        android:textSize="19sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.77" />
+
+    <TextView
+        android:id="@+id/textRepetirSenhaRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Repetir Senha"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.53" />
 
     <Button
-        android:id="@+id/btVoltar"
+        android:id="@+id/buttonReturnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="Voltar"
         android:text="Voltar"
-        android:textSize="20sp"
+        android:textSize="27sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintHorizontal_bias="0.18"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.96" />
-
-    <Button
-        android:id="@+id/btMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="Menu"
-        android:text="Menu"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.19"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.96" />
+        app:layout_constraintVertical_bias="0.94" />
 
     <TextView
-        android:id="@+id/txResumoGastos"
+        android:id="@+id/textSenhaRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Resumo do Gastos"
-        android:textSize="27sp"
+        android:text="Senha"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7" />
+
+    <TextView
+        android:id="@+id/textLoginRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.345" />
+
+    <TextView
+        android:id="@+id/textRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:textSize="37sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19999999" />
+
+    <TextView
+        android:id="@+id/textGosteiRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gastei"
+        android:textSize="90sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+
+    <EditText
+        android:id="@+id/editTextLoginRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center_horizontal|center_vertical"
+        android:inputType="textPersonName"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.41000003" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
