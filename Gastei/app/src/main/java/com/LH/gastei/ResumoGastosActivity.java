@@ -98,11 +98,14 @@ public class ResumoGastosActivity extends AppCompatActivity {
         p_lanches = (lanches * 100) / total;
         p_lazer = (lazer * 100) / total;
 
-        txResumoGenero.setText("Despesas Fixas - " + df.format(p_despesasFixas) + "% - " + "R$" + despesasFixas + "\n"+
-                               "Combustível - " + df.format(p_combustivel) + "% - " + "R$" + combustivel + "\n"+
-                               "Passagem - " + df.format(p_passagem) + "% - " + "R$" + passagem + "\n"+
-                               "Lanches - " + df.format(p_lanches) + "% - " + "R$" + lanches + "\n" +
-                               "Lazer - " + df.format(p_lazer) + "% - " + "R$" + lazer);
+        String passandoInformacao =
+                "Despesas Fixas - " + df.format(p_despesasFixas) + "% - " + "R$" + despesasFixas + "\n"+
+                "Combustível - " + df.format(p_combustivel) + "% - " + "R$" + combustivel + "\n"+
+                "Passagem - " + df.format(p_passagem) + "% - " + "R$" + passagem + "\n"+
+                "Lanches - " + df.format(p_lanches) + "% - " + "R$" + lanches + "\n" +
+                "Lazer - " + df.format(p_lazer) + "% - " + "R$" + lazer;
+
+        txResumoGenero.setText(passandoInformacao);
     }
 
     public void CalcularClassificacao(){
@@ -133,9 +136,12 @@ public class ResumoGastosActivity extends AppCompatActivity {
         p_poucoImportante = (poucoImportante * 100) / total;
         p_desnecessario = (desnecessario * 100) / total;
 
-        txResumoClassificacao.setText("Importante - " + df.format(p_importante) + "% - " + "R$" + importante + "\n"+
+        String passandoInformacao =
+                "Importante - " + df.format(p_importante) + "% - " + "R$" + importante + "\n"+
                 "Pouco Importante - " + df.format(p_poucoImportante) + "% - " + "R$" + poucoImportante + "\n"+
-                "Desnecessário - " + df.format(p_desnecessario) + "% - " + "R$" + desnecessario);
+                "Desnecessário - " + df.format(p_desnecessario) + "% - " + "R$" + desnecessario;
+
+        txResumoClassificacao.setText(passandoInformacao);
     }
 
     public void CalcularFormaPagamento(){
@@ -179,11 +185,14 @@ public class ResumoGastosActivity extends AppCompatActivity {
         p_boleto = (boleto * 100) / total;
         p_debitoAutomatico = (debitoAutomatico * 100) / total;
 
-        txResumoFormaPagamento.setText("Dinheiro - " + df.format(p_dinheiro) + "% - " + "R$" + dinheiro + "\n"+
+        String passandoInformacao =
+                "Dinheiro - " + df.format(p_dinheiro) + "% - " + "R$" + dinheiro + "\n"+
                 "Cartão de Crédito - " + df.format(p_cartaoCredito) + "% - " + "R$" + cartaoCredito + "\n"+
                 "Cartão de Débito - " + df.format(p_cartaoDebito) + "% - " + "R$" + cartaoDebito + "\n"+
                 "Boleto - " + df.format(p_boleto) + "% - " + "R$" + boleto + "\n" +
-                "Débito Automático - " + df.format(p_debitoAutomatico) + "% - " + "R$" + debitoAutomatico);
+                "Débito Automático - " + df.format(p_debitoAutomatico) + "% - " + "R$" + debitoAutomatico;
+
+                txResumoFormaPagamento.setText(passandoInformacao);
     }
 
     public void Voltar(View view){
