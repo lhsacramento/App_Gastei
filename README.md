@@ -1,5 +1,5 @@
 # App_Gastei
-Projeto do aplicativo financeiro
+Projeto de um aplicativo financeiro
 
 Esse aplicativo foi criado no Android Studio utilizando java.
 
